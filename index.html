@@ -154,8 +154,11 @@
 
         /* --- Section Specific Adjustments --- */
         #about .section-content {
-            display: flex; flex-direction: column;
-            justify-content: center; text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
         }
         #about p { font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.7; }
 
@@ -326,6 +329,76 @@
             object-fit: cover;
         }
 
+        /* Update photo styling with organic blob shape - no rotation */
+        .profile-photo-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 1.5em;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+        }
+
+        @keyframes blob-morph {
+            0% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blob-morph 8s ease-in-out infinite;
+            box-shadow: none;
+            transform-origin: center center;
+        }
+
+        .profile-photo {
+            width: 110%;
+            height: 110%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+            position: absolute;
+            top: -5%;
+            left: -5%;
+            animation: slight-zoom 15s ease-in-out infinite;
+        }
+
+        @keyframes slight-zoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .profile-photo-container:hover .profile-photo {
+            transform: scale(1.1);
+        }
+
+        .profile-photo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%, rgba(28, 72, 159, 0.1) 100%);
+            z-index: 2;
+            pointer-events: none;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blob-morph 8s ease-in-out infinite;
+        }
+
         @media (max-width: 768px) {
             html { scroll-snap-type: none; } /* Disable scroll snap on mobile */
             body { overflow-y: auto; } /* Enable body scroll */
@@ -371,6 +444,12 @@
                 height: 100%;
                 object-fit: cover;
             }
+
+            .profile-photo-container {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 1em;
+            }
         }
 
     </style>
@@ -391,9 +470,14 @@
 
         <section id="about">
             <div class="section-content">
-             <h1>Huseyn Babayev <span>MD, MSc</span></h1>
-            <p>Scientific researcher focused on <em>immunology</em>, <em>organoids</em>, <em>bioinformatics</em>, and <em>computational biology</em>. Exploring innovative solutions at the intersection of medicine and technology.</p>
-             </div>
+                <div class="profile-photo-container">
+                    <div class="profile-photo-wrapper">
+                        <img src="images/photo.png" alt="Huseyn Babayev" class="profile-photo">
+                    </div>
+                </div>
+                <h1>Huseyn Babayev <span>MD, MSc</span></h1>
+                <p>Scientific researcher focused on <em>immunology</em>, <em>organoids</em>, <em>bioinformatics</em>, and <em>computational biology</em>. Exploring innovative solutions at the intersection of medicine and technology.</p>
+            </div>
         </section>
 
         <section id="experience">
@@ -428,8 +512,8 @@
             <div class="publications-container">
                      <a href="https://doi.org/10.1111/all.16383" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>1.	Tracing the evolutionary pathway of IgG4: Implications for immune tolerance and regulation</h4><p class="authors">Huseyn Babayev, Ali Sahin, et al.</p><div class="publication-meta"><p>Allergy. 2025</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
                      <a href="https://doi.org/10.1038/s41423-025-01261-2" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>Type 2 immunity in allergic diseases.</h4><p class="authors">Ismail Ogulur, Yasutaka Mitamura, et al.</p><div class="publication-meta"><p>Cell Mol Immunol. 2025</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
-                     <a href="https://doi.org/10.1016/j.mehy.2023.111130" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>FAP-targeted CAR T-cell therapy: A promising approach for the treatment of Peyronie’s disease. </h4><p class="authors">Ali Şahin, Huseyn Babayev, Murat Gül.</p><div class="publication-meta"><p>Med Hypotheses. 2023</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
-                     <a href="https://doi.org/10.1038/s41443-024-00845-2" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>Unveiling the molecular Hallmarks of Peyronie’s disease: a comprehensive narrative review. </h4><p class="authors">Ali Şahin, Huseyn Babayev, et al.</p><div class="publication-meta"><p>Int J Impot Res. 2024</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
+                     <a href="https://doi.org/10.1016/j.mehy.2023.111130" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>FAP-targeted CAR T-cell therapy: A promising approach for the treatment of Peyronie's disease. </h4><p class="authors">Ali Şahin, Huseyn Babayev, Murat Gül.</p><div class="publication-meta"><p>Med Hypotheses. 2023</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
+                     <a href="https://doi.org/10.1038/s41443-024-00845-2" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>Unveiling the molecular Hallmarks of Peyronie's disease: a comprehensive narrative review. </h4><p class="authors">Ali Şahin, Huseyn Babayev, et al.</p><div class="publication-meta"><p>Int J Impot Res. 2024</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
                      <a href="https://doi.org/10.4274/tji.galenos.2022.80774" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>Potential Neuroinvasion Mechanism of SARS-CoV-2.</h4><p class="authors">Ali Sahin, Seval Kubra Korkunc, et al.</p><div class="publication-meta"><p>Turk J Immunol. 2022</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
                     <a href="https://doi.org/10.1016/j.smim.2023.101846" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>The epithelial barrier: The gateway to allergic, autoimmune, and metabolic diseases and chronic neuropsychiatric conditions. </h4><p class="authors">Duygu Yazici, Ismail Ogulur, et al.</p><div class="publication-meta"><p>Semin Immunol. 2023</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
                     <a href="https://doi.org/10.1111/all.15891" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4>Household laundry detergents disrupt barrier integrity and induce inflammation in mouse and human skin</h4><p class="authors">Arturo O. Rinaldi, Manru Li, et al.</p><div class="publication-meta"><p>Allergy. 2023</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
