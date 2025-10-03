@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Huseyn Babayev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide-static@latest/umd/lucide.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="has-blog-layout">
+    <div id="header-placeholder"></div>
+
+    <div class="blog-layout-container">
+        <header class="blog-header full-width-header blog-page-section">
+            <div class="header-content">
+                <h1 data-lang-key="blogTitle">Blog</h1>
+                <p class="subtitle" data-lang-key="blogSubtitle">Thoughts, and tutorials on science, technology, and more.</p>
+                <div class="blog-section-nav">
+                    <a href="#computational-biology" data-lang-key="blog_section_comp_bio">Computational Biology</a>
+                    <a href="#epithelial-cell-biology" data-lang-key="blog_section_epithelial">Epithelial Cell Biology</a>
+                </div>
+            </div>
+            <div class="scroll-down-indicator">
+                <span data-lang-key="scrollDown">Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </header>
+
+        <section class="blog-page-section" id="computational-biology">
+            <div class="section-content-wrapper">
+                <h2 class="section-header" data-lang-key="blog_section_comp_bio">Computational Biology</h2>
+                <div class="articles-container">
+                    <a href="/blog/articles/cytometry-analysis-tools.html?v=1" class="article-card">
+                        <div class="article-card-content">
+                            <h3 class="article-card-title" data-lang-key="cytometry_title">Tools in Cytometry Analysis</h3>
+                            <span class="article-card-date">Oct 27, 2023</span>
+                            <span class="article-card-version">v1.0</span>
+                        </div>
+                    </a>
+                    <a href="/blog/articles/scrna-seq-analysis-guide.html" class="article-card">
+                        <div class="article-card-content">
+                            <h3 class="article-card-title" data-lang-key="scrna_title">A Complete Guide to scRNA-seq Analysis</h3>
+                            <span class="article-card-date">Jul 26, 2024</span>
+                            <span class="article-card-version">v1.0</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-page-section" id="epithelial-cell-biology">
+            <div class="section-content-wrapper">
+                <h2 class="section-header" data-lang-key="blog_section_epithelial">Epithelial Cell Biology</h2>
+                <div class="articles-container">
+                    <a href="/blog/articles/leaky-barriers-chronic-diseases.html" class="article-card">
+                        <div class="article-card-content">
+                            <h3 class="article-card-title" data-lang-key="leaky_barriers_title">Are Leaky Barriers the Hidden Cause of Modern Chronic Diseases?</h3>
+                            <span class="article-card-date">Sep 05, 2024</span>
+                            <span class="article-card-version">v1.0</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div id="main-footer"></div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/lang/translations.js"></script>
+    <script src="/js/lang/lang-switcher.js"></script>
+</body>
+</html> 
