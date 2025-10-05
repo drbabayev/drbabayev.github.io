@@ -84,11 +84,15 @@ nav {
     align-items: center;
     justify-content: center;
     z-index: 1300;
+    min-width: 40px; /* Ensure button has minimum width */
+    min-height: 40px; /* Ensure button has minimum height */
 }
 .nav-toggle .icon {
     width: 20px;
     height: 20px;
     color: var(--color-text-primary);
+    display: block; /* Ensure icon is visible */
+    flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
 /* Ensure lucide-injected SVGs inside button are visible */
@@ -98,6 +102,8 @@ nav {
     color: var(--color-text-primary); /* Lucide uses currentColor */
     stroke: currentColor;
     stroke-width: 2.2;
+    display: block; /* Ensure SVG is visible */
+    fill: none; /* Ensure stroke is visible */
 }
 
 /* Emphasize color on hover and when menu is open */
@@ -699,6 +705,65 @@ em { font-style: normal; color: var(--color-accent); font-weight: 500; }
     color: var(--color-accent);
     flex-shrink: 0;
 }
+
+/* Full-width contact info styling */
+.contact-info-full {
+    background-color: var(--color-surface);
+    padding: 2em;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 2em;
+}
+.contact-info-full a, .contact-info-full p.location-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.8em 0;
+    transition: all var(--transition-speed) ease;
+    border-bottom: 1px solid var(--color-border);
+}
+.contact-info-full a:last-child, .contact-info-full p.location-info {
+    border-bottom: none;
+}
+.contact-info-full a:hover {
+    color: var(--color-accent);
+    transform: translateX(5px);
+}
+.contact-info-full .icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+}
+
+/* Full-width map container styling */
+.map-container-full {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    background-color: var(--color-surface);
+    margin: 0 auto;
+}
+.map-container-full img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: transform var(--transition-speed) ease;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+}
+.map-container-full:hover img {
+    transform: scale(1.02);
+}
+
 .map-container {
     width: 350px;
     height: 350px;
@@ -1212,6 +1277,22 @@ footer {
     .contact-info a, .contact-info p.location-info {
         font-size: 0.9rem;
         padding: 0.6em 0;
+    }
+    
+    .contact-info-full {
+        padding: 1.5em;
+        max-width: 100%;
+        margin-bottom: 1.5em;
+    }
+    
+    .contact-info-full a, .contact-info-full p.location-info {
+        font-size: 0.9rem;
+        padding: 0.6em 0;
+    }
+    
+    .map-container-full {
+        max-width: 100%;
+        height: 250px;
     }
     
     .map-container {

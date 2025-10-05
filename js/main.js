@@ -60,6 +60,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (toggleBtn && !toggleBtn.querySelector('svg') && typeof lucide !== 'undefined') {
                     lucide.createIcons();
                 }
+                // Fallback: if no SVG is found after a short delay, add a text fallback
+                setTimeout(() => {
+                    if (toggleBtn && !toggleBtn.querySelector('svg')) {
+                        console.debug('Lucide icon not loaded, using text fallback');
+                        toggleBtn.innerHTML = '<span style="font-size: 18px; font-weight: bold;">☰</span>';
+                    }
+                }, 100);
             } catch (e) {
                 console.debug('Lucide initial render skipped:', e);
             }
@@ -77,7 +84,12 @@ document.addEventListener("DOMContentLoaded", function() {
                         lucide.createIcons();
                     } catch (e) {
                         console.debug('Lucide re-render error:', e);
+                        // Fallback to text icons
+                        toggleBtn.innerHTML = '<span style="font-size: 18px; font-weight: bold;">' + (isOpen ? '✕' : '☰') + '</span>';
                     }
+                } else {
+                    // Fallback to text icons if Lucide is not available
+                    toggleBtn.innerHTML = '<span style="font-size: 18px; font-weight: bold;">' + (isOpen ? '✕' : '☰') + '</span>';
                 }
             });
 
