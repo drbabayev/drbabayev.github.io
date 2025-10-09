@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Admin - Dr. Babayev</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="editor.css">
+    <!-- TinyMCE Editor -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Articles Database -->
+    <script src="articles-db.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-left">
+                <h1>Blog Editor</h1>
+                <span class="status-indicator" id="saveStatus">Unsaved</span>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-icon" id="themeToggleBtn" title="Toggle dark/light mode">
+                    <i data-lucide="moon"></i>
+                </button>
+                <button class="btn btn-icon" id="helpBtn" title="Keyboard shortcuts & help">
+                    <i data-lucide="help-circle"></i>
+                </button>
+                <button class="btn btn-secondary" id="loadBtn" title="Ctrl+O">
+                    <i data-lucide="folder-open"></i>
+                    Load Article
+                </button>
+                <button class="btn btn-secondary" id="newBtn" title="Ctrl+N">
+                    <i data-lucide="file-plus"></i>
+                    New Article
+                </button>
+                <button class="btn btn-secondary" id="saveArticleBtn" title="Ctrl+S">
+                    <i data-lucide="save"></i>
+                    Save to DB
+                </button>
+                <button class="btn btn-secondary" id="deleteArticleBtn" title="Delete current article">
+                    <i data-lucide="trash-2"></i>
+                    Delete
+                </button>
+                <button class="btn btn-primary" id="exportBtn" title="Ctrl+E">
+                    <i data-lucide="download"></i>
+                    Export All Pages
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Editor Area -->
+        <div class="editor-layout">
+            <!-- Sidebar - Metadata -->
+            <aside class="metadata-panel">
+                <details class="quick-guide" open>
+                    <summary>📖 Quick Start Guide</summary>
+                    <div class="guide-content">
+                        <p><strong>New Article:</strong></p>
+                        <ol>
+                            <li>Click "New Article"</li>
+                            <li>Fill in metadata below</li>
+                            <li>Write content in Editor tab</li>
+                            <li>Click "Save to DB"</li>
+                            <li>Click "Export All Pages"</li>
+                        </ol>
+                        <p><strong>Edit Existing:</strong></p>
+                        <ol>
+                            <li>Click "Load Article"</li>
+                            <li>Select article from list</li>
+                            <li>Make your changes</li>
+                            <li>Save & Export again</li>
+                        </ol>
+                    </div>
+                </details>
+                
+                <h3>Article Metadata</h3>
+                
+                <div class="form-group">
+                    <label for="articleCode">Article Code</label>
+                    <input type="text" id="articleCode" placeholder="ART001" readonly style="background: #f1f5f9;" />
+                    <small>Auto-generated unique code</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="articleCategory">Category</label>
+                    <select id="articleCategory">
+                        <option value="computational-biology">Computational Biology</option>
+                        <option value="epithelial-barrier">Epithelial Barrier</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="articleDate">Publication Date</label>
+                    <input type="date" id="articleDate" />
+                </div>
+
+                <div class="form-group">
+                    <label for="articleImage">Header Image URL</label>
+                    <input type="text" id="articleImage" placeholder="/images/article-header.jpg" />
+                </div>
+
+                <hr>
+
+                <h3>Translations</h3>
+                
+                <div class="translation-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4>English</h4>
+                        <label style="font-size: 0.875rem; color: #10b981; font-weight: 500;">
+                            <input type="checkbox" id="availableEn" checked disabled style="margin-right: 0.5rem;">
+                            Available (required)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="titleEn" placeholder="Article Title" />
+                    </div>
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" id="slugEn" placeholder="article-title-slug" />
+                        <small>URL-friendly identifier</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Excerpt</label>
+                        <textarea id="excerptEn" rows="3" placeholder="Brief description..."></textarea>
+                    </div>
+                </div>
+
+                <div class="translation-group" id="groupTr">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4>Turkish</h4>
+                        <label style="font-size: 0.875rem; color: #64748b; font-weight: 500;">
+                            <input type="checkbox" id="availableTr" style="margin-right: 0.5rem;">
+                            Available in this language
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="titleTr" placeholder="Makale Başlığı" />
+                    </div>
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" id="slugTr" placeholder="makale-basligi-slug" />
+                        <small>URL-friendly identifier</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Excerpt</label>
+                        <textarea id="excerptTr" rows="3" placeholder="Kısa açıklama..."></textarea>
+                    </div>
+                </div>
+
+                <div class="translation-group" id="groupAz">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4>Azerbaijani</h4>
+                        <label style="font-size: 0.875rem; color: #64748b; font-weight: 500;">
+                            <input type="checkbox" id="availableAz" style="margin-right: 0.5rem;">
+                            Available in this language
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="titleAz" placeholder="Məqalə Başlığı" />
+                    </div>
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" id="slugAz" placeholder="meqale-basligi-slug" />
+                        <small>URL-friendly identifier</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Excerpt</label>
+                        <textarea id="excerptAz" rows="3" placeholder="Qısa təsvir..."></textarea>
+                    </div>
+                </div>
+
+                <div class="translation-group" id="groupDe">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4>German</h4>
+                        <label style="font-size: 0.875rem; color: #64748b; font-weight: 500;">
+                            <input type="checkbox" id="availableDe" style="margin-right: 0.5rem;">
+                            Available in this language
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="titleDe" placeholder="Artikeltitel" />
+                    </div>
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" id="slugDe" placeholder="artikeltitel-slug" />
+                        <small>URL-friendly identifier</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Excerpt</label>
+                        <textarea id="excerptDe" rows="3" placeholder="Kurze Beschreibung..."></textarea>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="includeReferences" checked />
+                        Include References Section
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="includeTOC" checked />
+                        Include Table of Contents
+                    </label>
+                </div>
+            </aside>
+
+            <!-- Main Content Editor -->
+            <main class="editor-main">
+                <div class="editor-tabs">
+                    <button class="tab-btn active" data-tab="editor">
+                        <i data-lucide="edit-3"></i>
+                        Editor
+                    </button>
+                    <button class="tab-btn" data-tab="preview">
+                        <i data-lucide="eye"></i>
+                        Preview
+                    </button>
+                    <button class="tab-btn" data-tab="html-en">
+                        <i data-lucide="code"></i>
+                        HTML (EN)
+                    </button>
+                    <button class="tab-btn" data-tab="html-tr">
+                        <i data-lucide="code"></i>
+                        HTML (TR)
+                    </button>
+                    <button class="tab-btn" data-tab="html-az">
+                        <i data-lucide="code"></i>
+                        HTML (AZ)
+                    </button>
+                    <button class="tab-btn" data-tab="html-de">
+                        <i data-lucide="code"></i>
+                        HTML (DE)
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="editorTab">
+                    <div class="editor-toolbar-custom">
+                        <button class="tool-btn" data-action="heading" title="Add Heading">
+                            <i data-lucide="heading"></i>
+                        </button>
+                        <button class="tool-btn" data-action="subheading" title="Add Subheading">
+                            <i data-lucide="heading-2"></i>
+                        </button>
+                        <button class="tool-btn" data-action="paragraph" title="Add Paragraph">
+                            <i data-lucide="align-left"></i>
+                        </button>
+                        <button class="tool-btn" data-action="list" title="Add List">
+                            <i data-lucide="list"></i>
+                        </button>
+                        <button class="tool-btn" data-action="image" title="Insert Image">
+                            <i data-lucide="image"></i>
+                        </button>
+                        <button class="tool-btn" data-action="upload-image" title="Upload Image">
+                            <i data-lucide="upload"></i>
+                        </button>
+                        <button class="tool-btn" data-action="link" title="Insert Link">
+                            <i data-lucide="link"></i>
+                        </button>
+                        <button class="tool-btn" data-action="code" title="Code Block">
+                            <i data-lucide="code"></i>
+                        </button>
+                    </div>
+                    <!-- Content language switcher -->
+                    <div class="content-lang-switch" style="display:flex;gap:6px;align-items:center;padding:6px 10px;background:var(--bg-panel);border-bottom:1px solid var(--border);">
+                        <span style="font-size:0.813rem;color:var(--text-secondary);margin-right:6px;">Content Language:</span>
+                        <button class="btn btn-secondary content-lang-btn" data-lang="en" style="padding:4px 8px;">EN</button>
+                        <button class="btn btn-secondary content-lang-btn" data-lang="tr" style="padding:4px 8px;">TR</button>
+                        <button class="btn btn-secondary content-lang-btn" data-lang="az" style="padding:4px 8px;">AZ</button>
+                        <button class="btn btn-secondary content-lang-btn" data-lang="de" style="padding:4px 8px;">DE</button>
+                    </div>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                    <textarea id="editor"></textarea>
+                </div>
+
+                <div class="tab-content" id="previewTab">
+                    <div class="preview-container">
+                        <iframe id="previewFrame" title="Article Preview"></iframe>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="htmlTabEn">
+                    <div style="padding: 12px; background: #dbeafe; color: #1e40af; border-radius: 6px; margin-bottom: 8px; font-size: 0.875rem; border: 1px solid #60a5fa;">
+                        <strong>📝 Edit Tables Here:</strong> Find your &lt;table&gt; tags and edit cells directly. Tables cannot be edited in visual mode.
+                    </div>
+                    <textarea id="htmlSourceEn" spellcheck="false"></textarea>
+                    <div class="html-actions">
+                        <button class="btn btn-secondary" data-copy="en">
+                            <i data-lucide="copy"></i>
+                            Copy HTML (EN)
+                        </button>
+                        <button class="btn btn-secondary" data-apply-lang="en">
+                            <i data-lucide="replace"></i>
+                            Apply to Editor (EN)
+                        </button>
+                        <button class="btn btn-primary" data-save-lang="en">
+                            <i data-lucide="save"></i>
+                            Save This Language (EN)
+                        </button>
+                        <button class="btn btn-secondary" data-delete-lang="en">
+                            <i data-lucide="trash-2"></i>
+                            Delete This Language (EN)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="htmlTabTr">
+                                        <div style="padding: 12px; background: #dbeafe; color: #1e40af; border-radius: 6px; margin-bottom: 8px; font-size: 0.875rem; border: 1px solid #60a5fa;">
+                        <strong>📝 Edit Tables Here:</strong> Find your &lt;table&gt; tags and edit cells directly. Tables cannot be edited in visual mode.
+                    </div>
+<textarea id="htmlSourceTr" spellcheck="false"></textarea>
+                    <div class="html-actions">
+                        <button class="btn btn-secondary" data-copy="tr">
+                            <i data-lucide="copy"></i>
+                            Copy HTML (TR)
+                        </button>
+                        <button class="btn btn-secondary" data-apply-lang="tr">
+                            <i data-lucide="replace"></i>
+                            Apply to Editor (TR)
+                        </button>
+                        <button class="btn btn-primary" data-save-lang="tr">
+                            <i data-lucide="save"></i>
+                            Save This Language (TR)
+                        </button>
+                        <button class="btn btn-secondary" data-delete-lang="tr">
+                            <i data-lucide="trash-2"></i>
+                            Delete This Language (TR)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="htmlTabAz">
+                                        <div style="padding: 12px; background: #dbeafe; color: #1e40af; border-radius: 6px; margin-bottom: 8px; font-size: 0.875rem; border: 1px solid #60a5fa;">
+                        <strong>📝 Edit Tables Here:</strong> Find your &lt;table&gt; tags and edit cells directly. Tables cannot be edited in visual mode.
+                    </div>
+<textarea id="htmlSourceAz" spellcheck="false"></textarea>
+                    <div class="html-actions">
+                        <button class="btn btn-secondary" data-copy="az">
+                            <i data-lucide="copy"></i>
+                            Copy HTML (AZ)
+                        </button>
+                        <button class="btn btn-secondary" data-apply-lang="az">
+                            <i data-lucide="replace"></i>
+                            Apply to Editor (AZ)
+                        </button>
+                        <button class="btn btn-primary" data-save-lang="az">
+                            <i data-lucide="save"></i>
+                            Save This Language (AZ)
+                        </button>
+                        <button class="btn btn-secondary" data-delete-lang="az">
+                            <i data-lucide="trash-2"></i>
+                            Delete This Language (AZ)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="htmlTabDe">
+                                        <div style="padding: 12px; background: #dbeafe; color: #1e40af; border-radius: 6px; margin-bottom: 8px; font-size: 0.875rem; border: 1px solid #60a5fa;">
+                        <strong>📝 Edit Tables Here:</strong> Find your &lt;table&gt; tags and edit cells directly. Tables cannot be edited in visual mode.
+                    </div>
+<textarea id="htmlSourceDe" spellcheck="false"></textarea>
+                    <div class="html-actions">
+                        <button class="btn btn-secondary" data-copy="de">
+                            <i data-lucide="copy"></i>
+                            Copy HTML (DE)
+                        </button>
+                        <button class="btn btn-secondary" data-apply-lang="de">
+                            <i data-lucide="replace"></i>
+                            Apply to Editor (DE)
+                        </button>
+                        <button class="btn btn-primary" data-save-lang="de">
+                            <i data-lucide="save"></i>
+                            Save This Language (DE)
+                        </button>
+                        <button class="btn btn-secondary" data-delete-lang="de">
+                            <i data-lucide="trash-2"></i>
+                            Delete This Language (DE)
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Translation Keys Manager -->
+        <div class="translation-keys-panel" id="translationKeysPanel">
+            <div class="panel-header">
+                <h3>Translation Keys Generator</h3>
+                <button class="close-btn" id="closeKeysPanel">×</button>
+            </div>
+            <div class="panel-content">
+                <p>Automatically generate translation keys for headings, paragraphs, and list items.</p>
+                <button class="btn btn-primary" id="generateKeysBtn">
+                    <i data-lucide="key"></i>
+                    Generate Translation Keys
+                </button>
+                <div id="generatedKeys"></div>
+            </div>
+        </div>
+
+        <!-- Article List Modal -->
+        <div class="modal" id="articleListModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Load Existing Article</h2>
+                    <button class="close-btn" id="closeModal">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="article-list" id="articleList">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Modal -->
+        <div class="modal" id="helpModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>⌨️ Keyboard Shortcuts & Tips</h2>
+                    <button class="close-btn" id="closeHelpModal">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="help-section">
+                        <h3>Editor Shortcuts</h3>
+                        <table class="shortcuts-table">
+                            <tr><td><kbd>Ctrl</kbd> + <kbd>N</kbd></td><td>New Article</td></tr>
+                            <tr><td><kbd>Ctrl</kbd> + <kbd>O</kbd></td><td>Open/Load Article</td></tr>
+                            <tr><td><kbd>Ctrl</kbd> + <kbd>S</kbd></td><td>Save to Database</td></tr>
+                            <tr><td><kbd>Ctrl</kbd> + <kbd>E</kbd></td><td>Export All Pages</td></tr>
+                            <tr><td><kbd>Ctrl</kbd> + <kbd>B</kbd></td><td>Bold Text</td></tr>
+                            <tr><td><kbd>Ctrl</kbd> + <kbd>I</kbd></td><td>Italic Text</td></tr>
+                            <tr><td><kbd>Ctrl</kbd> + <kbd>K</kbd></td><td>Insert Link</td></tr>
+                        </table>
+                    </div>
+                    <div class="help-section">
+                        <h3>💡 Pro Tips</h3>
+                        <ul>
+                            <li>Auto-save runs every 2 seconds while editing</li>
+                            <li>Use the Preview tab to see how your article looks</li>
+                            <li>Slugs are auto-generated from titles but can be customized</li>
+                            <li>Upload images get embedded as base64 - replace with URLs before publishing</li>
+                            <li>Always Save to DB before Exporting to keep everything in sync</li>
+                        </ul>
+                    </div>
+                    <div class="help-section">
+                        <h3>📝 Workflow</h3>
+                        <ol>
+                            <li><strong>Create:</strong> New Article → Fill Metadata → Write Content</li>
+                            <li><strong>Save:</strong> Save to DB → Download articles-db.js</li>
+                            <li><strong>Export:</strong> Export All Pages → Download HTML files</li>
+                            <li><strong>Deploy:</strong> Upload files to GitHub → Push changes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="editor.js"></script>
+</body>
+</html>
+

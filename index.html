@@ -5,12 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
-    <title>Huseyn Babayev - Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Huseyn Babayev - MD, MSc | Immunology & Computational Biology Researcher</title>
+    <meta name="description" content="Huseyn Babayev is a scientific researcher focused on immunology, organoids, bioinformatics, and computational biology. PhD candidate at University of Zurich, Research Fellow at SIAF, and Co-founder of silicosome Biotechnology.">
+    <meta name="keywords" content="Huseyn Babayev, immunology, bioinformatics, computational biology, organoids, research, PhD, University of Zurich, SIAF, silicosome, biotechnology">
+    <meta name="author" content="Huseyn Babayev">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://drbabayev.github.io/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Huseyn Babayev - MD, MSc | Immunology & Computational Biology Researcher">
+    <meta property="og:description" content="Scientific researcher focused on immunology, organoids, bioinformatics, and computational biology. PhD candidate at University of Zurich, Research Fellow at SIAF.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://drbabayev.github.io/">
+    <meta property="og:image" content="https://drbabayev.github.io/images/photo.png">
+    <meta property="og:image:alt" content="Huseyn Babayev - Immunology and Computational Biology Researcher">
+    <meta property="og:site_name" content="Huseyn Babayev Portfolio">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Huseyn Babayev - MD, MSc | Immunology & Computational Biology Researcher">
+    <meta name="twitter:description" content="Scientific researcher focused on immunology, organoids, bioinformatics, and computational biology. PhD candidate at University of Zurich, Research Fellow at SIAF.">
+    <meta name="twitter:image" content="https://drbabayev.github.io/images/photo.png">
+    <meta name="twitter:image:alt" content="Huseyn Babayev - Immunology and Computational Biology Researcher">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide-static@latest/umd/lucide.js"></script>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Huseyn Babayev",
+        "jobTitle": "PhD Candidate in Microbiology and Immunology",
+        "description": "Scientific researcher focused on immunology, organoids, bioinformatics, and computational biology",
+        "url": "https://drbabayev.github.io/",
+        "image": "https://drbabayev.github.io/images/photo.png",
+        "sameAs": [
+            "https://orcid.org/0000-0001-6985-9436",
+            "https://scholar.google.com/citations?user=b3FL4AAAAJ"
+        ],
+        "worksFor": [
+            {
+                "@type": "Organization",
+                "name": "University of Zurich",
+                "url": "https://www.uzh.ch/"
+            },
+            {
+                "@type": "Organization", 
+                "name": "Swiss Institute of Allergy and Asthma Research (SIAF)",
+                "url": "https://www.siaf.uzh.ch/"
+            },
+            {
+                "@type": "Organization",
+                "name": "silicosome Biotechnology",
+                "url": "https://silicosome.com"
+            }
+        ],
+        "alumniOf": [
+            {
+                "@type": "EducationalOrganization",
+                "name": "Selcuk University Faculty of Medicine",
+                "url": "https://www.selcuk.edu.tr/"
+            }
+        ],
+        "knowsAbout": [
+            "Immunology",
+            "Bioinformatics", 
+            "Computational Biology",
+            "Organoids",
+            "Flow Cytometry",
+            "Single-Cell Sequencing",
+            "Machine Learning",
+            "Python",
+            "R"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Davos",
+            "addressCountry": "Switzerland"
+        },
+        "email": "huseyn.babayev@siaf.uzh.ch",
+        "telephone": "+41-76-778-54-96"
+    }
+    </script>
 </head>
 <body>
     <div id="main-header"></div>
@@ -69,6 +166,33 @@
 
         <section id="publications">
              <h2><i data-lucide="book-marked" class="icon"></i><span data-lang-key="publications_title">Peer-reviewed Papers</span></h2>
+             <!-- Scholar mini stats (hard-coded) -->
+             <div id="scholar-mini-stats" class="scholar-mini-stats">
+                 <div class="mini-card">
+                     <i data-lucide="bar-chart-3" class="icon"></i>
+                     <div>
+                        <div class="label" data-lang-key="mini_total_citations">Total Citations</div>
+                         <div class="value">306</div>
+                        <div class="subtitle" data-lang-key="mini_all_time">All time</div>
+                     </div>
+                 </div>
+                 <div class="mini-card">
+                     <i data-lucide="hash" class="icon"></i>
+                     <div>
+                        <div class="label" data-lang-key="mini_h_index">h-index</div>
+                         <div class="value">7</div>
+                        <div class="subtitle" data-lang-key="mini_impact_measure">Impact measure</div>
+                     </div>
+                 </div>
+                 <div class="mini-card">
+                     <i data-lucide="list-checks" class="icon"></i>
+                     <div>
+                        <div class="label" data-lang-key="mini_i10_index">i10-index</div>
+                         <div class="value">6</div>
+                        <div class="subtitle" data-lang-key="mini_pub_10_plus">Publications with 10+ citations</div>
+                     </div>
+                 </div>
+             </div>
              <div class="publications-outer-container">
                 <div class="publications-container">
                          <a href="https://doi.org/10.1111/all.16383" target="_blank" rel="noopener noreferrer" class="publication-card-link"><div class="publication-card"><h4 data-lang-key="pub1_title">Tracing the evolutionary pathway of IgG4: Implications for immune tolerance and regulation</h4><p class="authors" data-lang-key="pub1_authors">Huseyn Babayev, Ali Sahin, et al.</p><div class="publication-meta"><p data-lang-key="pub1_journal">Allergy. 2025</p><i data-lucide="arrow-up-right" class="icon"></i></div></div></a>
@@ -138,6 +262,7 @@
     <script src="/js/main.js"></script>
     <script src="/js/lang/translations.js"></script>
     <script src="/js/lang/lang-switcher.js"></script>
+    <script src="/js/theme-switcher.js"></script>
     <script>
       // Initialize Lucide Icons
       lucide.createIcons();

@@ -3,12 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Huseyn Babayev</title>
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    
+    <!-- SEO Meta Tags -->
+    <title>Blog - Huseyn Babayev | Immunology & Computational Biology Research</title>
+    <meta name="description" content="Research blog featuring articles on immunology, computational biology, cytometry analysis, single-cell sequencing, and epithelial cell biology by Huseyn Babayev.">
+    <meta name="keywords" content="immunology blog, computational biology, cytometry analysis, single-cell sequencing, epithelial cell biology, research articles, bioinformatics tutorials">
+    <meta name="author" content="Huseyn Babayev">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://drbabayev.github.io/blog.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Blog - Huseyn Babayev | Immunology & Computational Biology Research">
+    <meta property="og:description" content="Research blog featuring articles on immunology, computational biology, cytometry analysis, single-cell sequencing, and epithelial cell biology.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://drbabayev.github.io/blog.html">
+    <meta property="og:image" content="https://drbabayev.github.io/images/photo.png">
+    <meta property="og:image:alt" content="Huseyn Babayev Research Blog">
+    <meta property="og:site_name" content="Huseyn Babayev Portfolio">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog - Huseyn Babayev | Immunology & Computational Biology Research">
+    <meta name="twitter:description" content="Research blog featuring articles on immunology, computational biology, cytometry analysis, single-cell sequencing, and epithelial cell biology.">
+    <meta name="twitter:image" content="https://drbabayev.github.io/images/photo.png">
+    <meta name="twitter:image:alt" content="Huseyn Babayev Research Blog">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide-static@latest/umd/lucide.js"></script>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Huseyn Babayev Research Blog",
+        "description": "Research blog featuring articles on immunology, computational biology, cytometry analysis, single-cell sequencing, and epithelial cell biology",
+        "url": "https://drbabayev.github.io/blog.html",
+        "author": {
+            "@type": "Person",
+            "name": "Huseyn Babayev",
+            "url": "https://drbabayev.github.io/"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Huseyn Babayev",
+            "url": "https://drbabayev.github.io/"
+        },
+        "inLanguage": "en-US",
+        "about": [
+            "Immunology",
+            "Computational Biology",
+            "Cytometry Analysis",
+            "Single-Cell Sequencing",
+            "Epithelial Cell Biology"
+        ]
+    }
+    </script>
 </head>
 <body class="has-blog-layout">
     <div id="header-placeholder"></div>
@@ -18,6 +87,11 @@
             <div class="header-content">
                 <h1 data-lang-key="blogTitle">Blog</h1>
                 <p class="subtitle" data-lang-key="blogSubtitle">Thoughts, and tutorials on science, technology, and more.</p>
+                <div class="blog-search" role="search">
+                    <label for="blog-search-input" class="visually-hidden" data-lang-key="blog_search_label">Search articles</label>
+                    <input id="blog-search-input" type="search" data-lang-placeholder-key="blog_search_placeholder" placeholder="Search articles..." autocomplete="off" aria-autocomplete="list" aria-controls="blog-search-results" aria-expanded="false" aria-label="Search articles" />
+                    <div id="blog-search-results" class="blog-search-results" role="listbox" aria-label="Search results"></div>
+                </div>
                 <div class="blog-section-nav">
                     <a href="#computational-biology" data-lang-key="blog_section_comp_bio">Computational Biology</a>
                     <a href="#epithelial-cell-biology" data-lang-key="blog_section_epithelial">Epithelial Cell Biology</a>
@@ -33,20 +107,7 @@
             <div class="section-content-wrapper">
                 <h2 class="section-header" data-lang-key="blog_section_comp_bio">Computational Biology</h2>
                 <div class="articles-container">
-                    <a href="/blog/articles/cytometry-analysis-tools.html?v=1" class="article-card">
-                        <div class="article-card-content">
-                            <h3 class="article-card-title" data-lang-key="cytometry_title">Tools in Cytometry Analysis</h3>
-                            <span class="article-card-date">Oct 27, 2023</span>
-                            <span class="article-card-version">v1.0</span>
-                        </div>
-                    </a>
-                    <a href="/blog/articles/scrna-seq-analysis-guide.html" class="article-card">
-                        <div class="article-card-content">
-                            <h3 class="article-card-title" data-lang-key="scrna_title">A Complete Guide to scRNA-seq Analysis</h3>
-                            <span class="article-card-date">Jul 26, 2024</span>
-                            <span class="article-card-version">v1.0</span>
-                        </div>
-                    </a>
+                    <!-- Articles will be dynamically loaded by blog-multilang.js -->
                 </div>
             </div>
         </section>
@@ -55,13 +116,7 @@
             <div class="section-content-wrapper">
                 <h2 class="section-header" data-lang-key="blog_section_epithelial">Epithelial Cell Biology</h2>
                 <div class="articles-container">
-                    <a href="/blog/articles/leaky-barriers-chronic-diseases.html" class="article-card">
-                        <div class="article-card-content">
-                            <h3 class="article-card-title" data-lang-key="leaky_barriers_title">Are Leaky Barriers the Hidden Cause of Modern Chronic Diseases?</h3>
-                            <span class="article-card-date">Sep 05, 2024</span>
-                            <span class="article-card-version">v1.0</span>
-                        </div>
-                    </a>
+                    <!-- Articles will be dynamically loaded by blog-multilang.js -->
                 </div>
             </div>
         </section>
@@ -72,5 +127,10 @@
     <script src="/js/main.js"></script>
     <script src="/js/lang/translations.js"></script>
     <script src="/js/lang/lang-switcher.js"></script>
+    <script src="/js/lang/language-controller.js"></script>
+    <script src="/js/theme-switcher.js"></script>
+    <script src="/js/search.js"></script>
+    <script src="/admin/articles-db.js"></script>
+    <script src="/js/blog-multilang.js"></script>
 </body>
 </html> 
